@@ -31,22 +31,24 @@ namespace Overloading
             }
 
         }
+
+        //works
        public Angle(int Degrees,int Minutes,int Seconds)
         {
             this.seconds = Seconds % 60;
 
-            this.minutes = Minutes % 60 + Seconds / 60 % 60;
-            
-            this.degrees = Degrees + Minutes % 60 + Seconds / 60 / 60 ;         
+            this.minutes = (Minutes  + (Seconds - seconds) / 60 ) % 60;
+
+            this.degrees = Degrees + ((Minutes + (Seconds - seconds) / 60) - minutes) / 60;      
         }
-        private Angle(Angle angle)
+        private Angle()
         {
-            degrees = angle.degrees;
-            minutes = angle.minutes;
-            seconds = angle.seconds;
+            this.seconds = 0;
+            this.minutes = 0;
+            this.degrees = 0;
         }
 
-
+        //overloaded ==
         public static bool operator == (Angle l , Angle r )
         {
             if ((l.degrees == r.degrees) &&
@@ -59,46 +61,18 @@ namespace Overloading
                 return false;
 
         }
+
+        //overloaded !=
         public static bool operator !=(Angle l, Angle r)
         {
             return !(l == r);
         }
       
+        //overloaded +
         public static Angle operator + (Angle l, Angle r)
         {
-            //Angle result = new Angle(l);
-            //if (l.seconds + r.seconds >= 60)
-            //{
-            //    result.seconds = l.seconds + r.seconds - 60;
-            //    result.minutes++;
-            //}
-            //else
-            //    result.seconds = l.seconds + r.seconds;
+            Angle result = new Angle();
 
-            //if (l.minutes + r.minutes >= 60)
-            //{
-            //    result.minutes = l.minutes + r.minutes - 60;
-            //    result.degrees++;
-            //}
-            //else
-            //    result.minutes = l.minutes + r.minutes;
-
-            //if (l.degrees + r.degrees > 360)
-            //{
-            //    result.degrees = l.degrees + r.degrees - 360;
-            //}
-            //else
-            //    result.degrees = l.degrees + r.degrees;
-            Angle result = new Angle(l);
-
-            result.degrees = l.degrees + r.degrees;
-            if (l.minutes + r.minutes >= 60)
-            {
-                result.minutes = l.minutes + r.minutes - 60;
-                result.degrees++;
-            }
-            else
-                result.minutes = l.minutes + r.minutes;
 
             if (l.seconds + r.seconds >= 60)
             {
@@ -108,10 +82,20 @@ namespace Overloading
             else
                 result.seconds = l.seconds + r.seconds;
 
+            if (l.minutes + r.minutes >= 60)
+            {
+                result.minutes += l.minutes + r.minutes - 60;
+                result.degrees++;
+            }
+            else
+                result.minutes += l.minutes + r.minutes;
+
+            result.degrees += l.degrees + r.degrees;
+
             return result;
 
         }
-
+        //+overload works
         public static void SortAngles(Angle [] angle)
         {
             Angle temp;
@@ -141,6 +125,7 @@ namespace Overloading
             }
         }
 
+        //works
         public int this[int i]
         {
             get
@@ -182,5 +167,15 @@ namespace Overloading
         {
             return "Degrees: " + this.degrees + "   Minutes: " + this.minutes + "   Seconds: " + this.seconds;
         }
+
+
+        //works
+        public static Angle operator *(Angle a , int i)
+        {
+            return  new Angle(a.Degrees * i,a.Minutes*i,a.Seconds*i);
+
+        }
+
+
     }
 }
