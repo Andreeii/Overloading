@@ -29,13 +29,15 @@ namespace Overloading
        public Angle(int Degrees,int Minutes,int Seconds)
         {
 
-            if (Minutes >= 60)
-                throw new Exception("Minutes can't be more than 60 value");
-            if (Seconds >= 60)
-                throw new Exception("Seconds can't be more than 60 value");
-            this.degrees = Degrees;
-            this.minutes = Minutes;
-            this.seconds = Seconds;
+            this.degrees = Degrees + Minutes / 60;
+
+
+            this.minutes = Minutes % 60  + Seconds / 60;
+
+           
+            this.seconds = Seconds % 60;
+            
+            
         }
         public Angle(Angle angle)
         {
@@ -62,7 +64,7 @@ namespace Overloading
             return !(l == r);
         }
       
-        public static Angle operator +(Angle l, Angle r)
+        public static Angle operator + (Angle l, Angle r)
         {
             Angle result = new Angle(l);
             result.degrees = l.degrees + r.degrees;

@@ -7,9 +7,9 @@ namespace Overloading
     {
         static void Main(string[] args)
         {
-            Angle a1 = new Angle(4, 45, 0);
+            Angle a1 = new Angle(4, 45, 40);
             Angle a2 = new Angle(1, 10, 21);
-            Angle a3 = new Angle(14, 30, 59);
+            Angle a3 = new Angle(14, 100, 100);
 
 
             Angle[] angles = new Angle[3];
@@ -19,11 +19,8 @@ namespace Overloading
 
             Angle.SortAngles(angles);
 
-            foreach(var i in angles)
-            {
-                Console.WriteLine(i.ToString());
-            }
-
+            Console.WriteLine(a3);
+      
             Angle a5 = a1 + a3;
             Console.WriteLine(a5.ToString());
 
