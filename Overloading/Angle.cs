@@ -176,6 +176,14 @@ namespace Overloading
 
         }
 
+        public static Angle operator -(Angle l , Angle r)
+        {
+            Angle rez = new Angle();
 
+            if(l.Degrees < r.Degrees)
+            {
+
+            }
+        }
     }
 }

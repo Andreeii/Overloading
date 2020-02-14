@@ -11,7 +11,11 @@ namespace Overloading
             Angle a2 = new Angle(0, 600, 7200);
             Angle a3 = new Angle(0, 600, 7217);
 
+            Angle a7 = new Angle(5, 20, 11);
 
+            Angle minus = a1 - a7;
+
+            Console.WriteLine(minus);
 
             Angle[] angles = new Angle[3];
             angles[0] = a1;
