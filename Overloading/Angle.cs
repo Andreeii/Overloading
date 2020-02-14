@@ -7,39 +7,39 @@ namespace Overloading
 {
     class Angle 
     {
-        int x = 60;
-        private int degrees, minutes, seconds;
+        private int degrees;
+        private int minutes;
+        private int seconds;
         
         public int Degrees 
         {
-            get;
-            set; 
+            get { return degrees; }
+            set { this.degrees = Degrees + Minutes / 60; }
         }
         public int Minutes 
         {
-            get;
-            set;
+            get { return minutes; }
+            set { this.minutes = Minutes % 60 + Seconds / 60; }
         }
         public int Seconds
         {
-            get;
-            set;
+            get { return seconds; }
+            set 
+            {
+                seconds = value;
+                seconds = seconds % 60;
+            }
 
         }
        public Angle(int Degrees,int Minutes,int Seconds)
         {
-
-            this.degrees = Degrees + Minutes / 60;
-
-
-            this.minutes = Minutes % 60  + Seconds / 60;
-
-           
             this.seconds = Seconds % 60;
+
+            this.minutes = Minutes % 60 + Seconds / 60 % 60;
             
-            
+            this.degrees = Degrees + Minutes % 60 + Seconds / 60 / 60 ;         
         }
-        public Angle(Angle angle)
+        private Angle(Angle angle)
         {
             degrees = angle.degrees;
             minutes = angle.minutes;
@@ -47,11 +47,11 @@ namespace Overloading
         }
 
 
-        public static bool operator ==(Angle l , Angle r )
+        public static bool operator == (Angle l , Angle r )
         {
-            if ((l.Degrees == r.Degrees)&&
-                (l.Minutes == r.Minutes)&&
-                (l.Seconds == r.Seconds))
+            if ((l.degrees == r.degrees) &&
+               (l.minutes == r.minutes) &&
+               (l.seconds == r.seconds))
             {
                 return true;
             }
@@ -66,7 +66,31 @@ namespace Overloading
       
         public static Angle operator + (Angle l, Angle r)
         {
+            //Angle result = new Angle(l);
+            //if (l.seconds + r.seconds >= 60)
+            //{
+            //    result.seconds = l.seconds + r.seconds - 60;
+            //    result.minutes++;
+            //}
+            //else
+            //    result.seconds = l.seconds + r.seconds;
+
+            //if (l.minutes + r.minutes >= 60)
+            //{
+            //    result.minutes = l.minutes + r.minutes - 60;
+            //    result.degrees++;
+            //}
+            //else
+            //    result.minutes = l.minutes + r.minutes;
+
+            //if (l.degrees + r.degrees > 360)
+            //{
+            //    result.degrees = l.degrees + r.degrees - 360;
+            //}
+            //else
+            //    result.degrees = l.degrees + r.degrees;
             Angle result = new Angle(l);
+
             result.degrees = l.degrees + r.degrees;
             if (l.minutes + r.minutes >= 60)
             {
@@ -83,7 +107,6 @@ namespace Overloading
             }
             else
                 result.seconds = l.seconds + r.seconds;
-
 
             return result;
 
