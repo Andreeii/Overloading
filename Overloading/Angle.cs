@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Overloading
 {
-    class Angle 
+    class Angle :IEnumerable
     {
         private int degrees;
         private int minutes;
@@ -32,8 +32,49 @@ namespace Overloading
 
         }
 
+        //implementing IEnumerator
+        private class AngleEnumerator : IEnumerator
+        {
+            private Angle angle;
+            private int curentposition;
+            public bool MoveNext()
+            {
+                ++curentposition;
+                return (curentposition > 2) ? false : true;
+            }
+
+            public AngleEnumerator(Angle angle)
+            {
+                this.angle = angle;
+                curentposition = -1;
+            }
+
+            public object Current
+            {
+                get
+                {
+                    if (curentposition < 0 || curentposition > 2)
+                        throw new InvalidOperationException("Out of range");
+
+                    return angle[(int)curentposition];
+                }
+            }
+
+            public void Reset()
+            {
+                curentposition = -1;
+            }
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return new AngleEnumerator(this);
+        }
+
+
+
         //works
-       public Angle(int Degrees,int Minutes,int Seconds)
+        public Angle(int Degrees,int Minutes,int Seconds)
         {
             this.seconds = Seconds % 60;
 
