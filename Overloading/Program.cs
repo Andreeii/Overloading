@@ -7,9 +7,9 @@ namespace Overloading
     {
         static void Main(string[] args)
         {
-            Angle a1 = new Angle(12, 25, 30);
+            Angle a1 = new Angle(10, 25, 30);
             Angle a2 = new Angle(10, 10, 15);
-            Angle a3 = new Angle(15, 27, 17);
+            Angle a3 = new Angle(10, 27, 17);
 
             Angle a7 = new Angle(15, 27, 36);
 
