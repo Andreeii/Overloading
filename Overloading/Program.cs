@@ -18,17 +18,19 @@ namespace Overloading
             //Console.WriteLine(a7);
             Console.WriteLine(minus);
             
-            Angle[] angles = new Angle[3];
+            Angle[] angles = new Angle[5];
             angles[0] = a1;
             angles[1] = a2;
             angles[2] = a3;
+            angles[3] = a7;
+            angles[4] = minus;
 
-            //Angle.SortAngles(angles);
+            Angle.SortAngles(angles);
 
-            //foreach (var i in angles)
-            //{
-            //    Console.WriteLine(i);
-            //}
+            foreach (var i in angles)
+            {
+                Console.WriteLine(i);
+            }
 
             //Angle a5 = a1 + a3;
 
