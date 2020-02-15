@@ -176,14 +176,44 @@ namespace Overloading
 
         }
 
-        public static Angle operator -(Angle l , Angle r)
+
+        //works 
+        public static Angle operator -(Angle left , Angle r)
         {
-            Angle rez = new Angle();
+            Angle rez = new Angle(0,0,0);
 
-            if(l.Degrees < r.Degrees)
+            Angle l = new Angle(left.Degrees,left.Minutes,left.Seconds);
+
+            if (l.Seconds < r.Seconds)
             {
-
+                l.minutes--;
+                rez.seconds = l.Seconds + 60 - r.Seconds;
+                
             }
+            else
+            {
+                rez.seconds = l.Seconds - r.Seconds;
+            }
+
+            if (l.Minutes < r.Minutes)
+            {
+                l.degrees--;
+                rez.minutes = l.Minutes + 60 - r.Minutes;
+            }
+            else
+            {
+                rez.minutes = l.Minutes - r.Minutes;
+            }
+            if (l.Degrees < r.Degrees)
+            {
+                rez.degrees = -(l.Degrees - r.Degrees);
+            }
+            else
+            {
+                rez.degrees = l.Degrees - r.Degrees;
+            }
+
+            return rez;
         }
     }
 }
