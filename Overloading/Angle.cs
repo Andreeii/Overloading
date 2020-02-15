@@ -180,7 +180,7 @@ namespace Overloading
         //works 
         public static Angle operator -(Angle left , Angle r)
         {
-            Angle rez = new Angle(0,0,0);
+            Angle rez = new Angle();
 
             Angle l = new Angle(left.Degrees,left.Minutes,left.Seconds);
 
