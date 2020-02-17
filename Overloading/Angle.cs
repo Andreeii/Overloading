@@ -247,7 +247,7 @@ namespace Overloading
             }
             if (l.Degrees < r.Degrees)
             {
-                rez.degrees = -(l.Degrees - r.Degrees);
+                rez.degrees = 360+(l.Degrees - r.Degrees);
             }
             else
             {
