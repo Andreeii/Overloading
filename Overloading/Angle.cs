@@ -32,6 +32,7 @@ namespace Overloading
 
         }
 
+
         //implementing IEnumerator
         //private class AngleEnumerator : IEnumerator
         //{
@@ -71,7 +72,7 @@ namespace Overloading
             //return new AngleEnumerator(this);
             yield return this[0];
             yield return this[1];
-            yield return this[2];
+            yield return this[2 ];
 
         }
 
