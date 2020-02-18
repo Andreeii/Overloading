@@ -14,12 +14,19 @@ namespace Overloading
         public int Degrees 
         {
             get { return degrees; }
-            set { this.degrees = Degrees + Minutes / 60; }
+            set { this.degrees = value; }
         }
         public int Minutes 
         {
             get { return minutes; }
-            set { this.minutes = Minutes % 60 + Seconds / 60; }
+            set {
+
+              
+                    degrees += value / 60;
+                    this.minutes = value % 60 ;
+              
+
+            }
         }
         public int Seconds
         {
@@ -27,7 +34,19 @@ namespace Overloading
             set 
             {
                 seconds = value;
-                seconds = seconds % 60;
+
+                if (seconds >= 60)
+                {
+                    minutes+= value/60;
+                    degrees += value / 60/60;
+                    seconds = value % 60;
+
+                }
+                else
+                {
+                    this.seconds = value;
+                }
+                
             }
 
         }
@@ -72,7 +91,7 @@ namespace Overloading
             //return new AngleEnumerator(this);
             yield return this[0];
             yield return this[1];
-            yield return this[2 ];
+            yield return this[2];
 
         }
 
