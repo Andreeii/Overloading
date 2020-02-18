@@ -33,42 +33,46 @@ namespace Overloading
         }
 
         //implementing IEnumerator
-        private class AngleEnumerator : IEnumerator
-        {
-            private Angle angle;
-            private int curentposition;
-            public bool MoveNext()
-            {
-                ++curentposition;
-                return (curentposition > 2) ? false : true;
-            }
+        //private class AngleEnumerator : IEnumerator
+        //{
+        //    private Angle angle;
+        //    private int curentposition;
+        //    public bool MoveNext()
+        //    {
+        //        ++curentposition;
+        //        return (curentposition > 2) ? false : true;
+        //    }
 
-            public AngleEnumerator(Angle angle)
-            {
-                this.angle = angle;
-                curentposition = -1;
-            }
+        //    public AngleEnumerator(Angle angle)
+        //    {
+        //        this.angle = angle;
+        //        curentposition = -1;
+        //    }
 
-            public object Current
-            {
-                get
-                {
-                    if (curentposition < 0 || curentposition > 2)
-                        throw new InvalidOperationException("Out of range");
+        //    public object Current
+        //    {
+        //        get
+        //        {
+        //            if (curentposition < 0 || curentposition > 2)
+        //                throw new InvalidOperationException("Out of range");
 
-                    return angle[(int)curentposition];
-                }
-            }
+        //            return angle[(int)curentposition];
+        //        }
+        //    }
 
-            public void Reset()
-            {
-                curentposition = -1;
-            }
-        }
+        //    public void Reset()
+        //    {
+        //        curentposition = -1;
+        //    }
+        //}
 
         public IEnumerator GetEnumerator()
         {
-            return new AngleEnumerator(this);
+            //return new AngleEnumerator(this);
+            yield return this[0];
+            yield return this[1];
+            yield return this[2];
+
         }
 
 

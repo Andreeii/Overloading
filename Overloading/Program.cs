@@ -28,7 +28,7 @@ namespace Overloading
 
             //Angle.SortAngles(angles);
 
-            foreach (var i in angles[4])
+            foreach (var i in angles[0])
             {
                 Console.WriteLine(i);
             }
